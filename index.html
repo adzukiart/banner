@@ -1,0 +1,293 @@
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+    <title>Azuki Banner</title>
+
+    <meta name="description" content="adzuki">
+
+    <meta property="og:title" content="" />
+    <meta property="og:description" content="">
+    <meta property="og:url" content="" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="" />
+
+    <link rel="icon" type="image/png" href="assets/logo.png">
+
+    <link rel="stylesheet" href="assets/teser.css">
+    <link rel="stylesheet" href="assets/elyts.css">
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
+    <script type="text/javascript">
+
+        if (window.ethereum) {
+            window.web3 = new Web3(ethereum);
+        }
+
+        let connectedAccount;
+        let quantity = 1;
+        const contractAddress = "0x6CF6Ffa8F1B28a87CafC1b0D3469681a9B22DCfc"
+        const contractABI = [{"inputs":[],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"approved","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"owner","type":"address"},{"indexed":true,"internalType":"address","name":"operator","type":"address"},{"indexed":false,"internalType":"bool","name":"approved","type":"bool"}],"name":"ApprovalForAll","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"from","type":"address"},{"indexed":true,"internalType":"address","name":"to","type":"address"},{"indexed":true,"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"Transfer","type":"event"},{"inputs":[],"name":"AZUKI_FEE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"FREE_AMOUNT","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MAX_MINT_AMOUNT_PER_TX","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"MAX_SUPPLY","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"PRICE","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"approve","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"azuki","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"}],"name":"balanceOf","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"freeMint","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getApproved","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"getOwnershipData","outputs":[{"components":[{"internalType":"address","name":"addr","type":"address"},{"internalType":"uint64","name":"startTimestamp","type":"uint64"}],"internalType":"struct ERC721A.TokenOwnership","name":"","type":"tuple"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"address","name":"operator","type":"address"}],"name":"isApprovedForAll","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"mint","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[],"name":"name","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"nextOwnerToExplicitlySet","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"ownerOf","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"uint256","name":"salePrice","type":"uint256"}],"name":"royaltyInfo","outputs":[{"internalType":"address","name":"","type":"address"},{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"},{"internalType":"bytes","name":"_data","type":"bytes"}],"name":"safeTransferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"operator","type":"address"},{"internalType":"bool","name":"approved","type":"bool"}],"name":"setApprovalForAll","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"bytes4","name":"interfaceId","type":"bytes4"}],"name":"supportsInterface","outputs":[{"internalType":"bool","name":"","type":"bool"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"symbol","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"owner","type":"address"},{"internalType":"uint256","name":"index","type":"uint256"}],"name":"tokenOfOwnerByIndex","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"tokenURI","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"totalSupply","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"from","type":"address"},{"internalType":"address","name":"to","type":"address"},{"internalType":"uint256","name":"tokenId","type":"uint256"}],"name":"transferFrom","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}]
+
+        window.onload = function () {
+            init()
+        }
+
+        $(document).ready(function () {
+
+            $('.knil-qaf').on('click', function (event) {
+                $('.sqaf').addClass('show');
+                $('html, body').animate({
+                    scrollTop: $(".retoof").offset().top
+                }, 1000);
+            });
+
+        });
+
+        const init = async () => {
+
+            $('#mint-quantity').change(() => {
+                quantity = $('#mint-quantity').val();
+            });
+
+            // Check nb supply :
+            // supply = 20
+            const nftContract = await new web3.eth.Contract(contractABI, contractAddress)
+            const supply = await nftContract.methods.totalSupply().call()
+            // console.log("Supply :", supply)
+            $('#available-qty').html(10000 - supply)
+            if (supply > 1000) {
+                $("#nottub-tnim-eerf").addClass('disabled')
+                $('#text-free-amount').html('1000 - SOLD OUT')
+            } else {
+              $('#text-free-amount').html((1000-supply) + '/1000')
+            }
+            if (supply >= 10000) {
+              $("nottub-tnim").html("SOLD OUT")
+              $("nottub-tnim").addClass('disabled')
+            } else {
+              $("nottub-tnim").html("mint")
+            }
+
+            // Am I alrady connected ?????
+            if (window.ethereum) {
+                try {
+                    const addressArray = await window.ethereum.request({
+                        method: "eth_accounts",
+                    });
+                    if (addressArray.length > 0) {
+                        connectedAccount = addressArray[0]
+                        console.log("Connected account :", addressArray)
+                        $('#tellaw-tcennoc').html('Wallet connected')
+                        $('#tellaw-tcennoc').addClass('disabled')
+
+                        // $('.account-balance').html("<b>" + (await getBalance()) + "</b> ETH")
+                        // $('.account-hash').html(connectedAccount.substring(0, 5) + '..' + connectedAccount.substring(connectedAccount.length - 3))
+                    }
+                } catch (err) {
+                    //
+                }
+            }
+
+            $("#nottub-tnim").click(() => {
+                if (!connectedAccount) {
+                    alert('Please connect your metamask wallet beofre ;)')
+                    return
+                }
+
+                mintToken(quantity)
+            })
+
+            $("#nottub-tnim-eerf").click(() => {
+                if (!connectedAccount) {
+                    alert('Please connect your metamask wallet beofre ;)')
+                    return
+                }
+
+                mintFreeTokens(quantity)
+            })
+
+            $('#tellaw-tcennoc').click(async () => {
+                if (window.ethereum) {
+                    window.web3 = new Web3(ethereum);
+                    try {
+                        accounts = await ethereum.request({ method: 'eth_requestAccounts' })
+                        let account = accounts[0]
+                        connectedAccount = account
+                        $('#tellaw-tcennoc').html('Wallet connected')
+                        $('#tellaw-tcennoc').addClass('disabled')
+                    } catch (err) {
+                        console.log(err)
+                        // $('#status').html('User denied account access', err)
+                    }
+                } else {
+                    $('#status').html('No Metamask (or other Web3 Provider) installed')
+                }
+            })
+
+        }
+
+
+        async function mintToken(nbTokens) {
+
+            const amountEth = '' + (0.01 * nbTokens)
+            const nftContract = await new web3.eth.Contract(contractABI, contractAddress)
+
+            const transactionParameters = {
+                from: window.ethereum.selectedAddress, // must match user's active address.
+                to: contractAddress, // Required except during contract publications.
+                // gas: estimation.toString(16),
+                value: parseInt(web3.utils.toWei(amountEth, "ether")).toString(16),
+                data: nftContract.methods.mint(nbTokens).encodeABI() //make call to NFT smart contract
+            }
+
+            try {
+                const txHash = await window.ethereum
+                    .request({
+                        method: 'eth_sendTransaction',
+                        params: [transactionParameters],
+                    });
+
+                window.setTimeout(async () => {
+                    const supply = await nftContract.methods.totalSupply().call()
+                    console.log("Supply :", supply)
+                    $('#available-qty').html(10000 - supply)
+                }, 10000)
+            } catch (error) {
+                // Not minted
+            }
+        }
+
+        async function mintFreeTokens(nbTokens) {
+
+            if (nbTokens > 20) {
+                alert("No more than 3 free tokens at a time !");
+                return;
+            }
+
+            const nftContract = await new web3.eth.Contract(contractABI, contractAddress)
+
+            const transactionParameters = {
+                from: window.ethereum.selectedAddress, // must match user's active address.
+                to: contractAddress, // Required except during contract publications.
+                // gas: gas.toString(16),
+                data: nftContract.methods.freeMint(nbTokens).encodeABI() //make call to NFT smart contract
+            }
+
+            try {
+                const txHash = await window.ethereum
+                    .request({
+                        method: 'eth_sendTransaction',
+                        params: [transactionParameters],
+                    });
+
+                window.setTimeout(async () => {
+                    const supply = await nftContract.methods.totalSupply().call()
+                    console.log("Supply :", supply)
+                    $('#available-qty').html(10000 - supply)
+                }, 10000)
+
+
+            } catch (error) {
+                // Not minted
+            }
+        }
+
+
+        function toHex(stringToConvert) {
+            return stringToConvert
+                .split('')
+                .map((c) => c.charCodeAt(0).toString(16).padStart(2, '0'))
+                .join('');
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="banner">
+        <div class=""="wrapper">
+            <div class=""="container">
+                    <a><img class="banner-img" src="assets/banner.gif" alt="Banner"></a>
+            </div>
+        </div>
+    </div>
+    <div class="yramirp">
+        <div class="reniatnoc">
+            <div class="edis">
+                <a class="nottub" id="tellaw-tcennoc" href="#">Connect Wallet</a>
+                <select id="mint-quantity" name="mint-quantity" data-name="mint-quantity" class="mint-input">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+
+                <div class="ofni-nottub">
+                    <a class="nottub" id="nottub-tnim-eerf" href="#">FREE MINT <span class="llams-nottub" id="text-free-amount">first
+                            1000 - SOLD OUT</span></a>
+
+                    <a class="nottub" id="nottub-tnim" href="#">MINT</a>
+
+                    <span id="price" class="ecirp">0.01 ETH each</span>
+                </div>
+                <div class="mint-info">
+                    <span class="minted-description red-description"><a
+                            href="https://opensea.io/collection/adzuki-banner" target="_blank">Check
+                            OpenSea</a></span>
+                    <span class="minted-description">adzuki banner left:</span>
+                    <span class="available"><span id="available-qty"></span>/10000</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="retoof">
+        <a href="https://etherscan.io/address/0x6CF6Ffa8F1B28a87CafC1b0D3469681a9B22DCfc#code" target="_blank">Verified
+            Contract Address</a>
+    </div>
+
+    <div class="sqaf show">
+        <!-- <img class="mfers-mphers-egami" src="assets/a.gif" alt=""> -->
+
+        <img class="qaf-egami" src="assets/faq.png" alt="">
+        <div class="1-qaf qaf">
+            <div class="noitseuq 1-noitseuq">
+                Q: What are Azuki Banner?
+            </div>
+            <div>
+                Azuki Banner is profile banner NFT, generated from <a href="https://www.azuki.com" target="_blank">Azuki</a> and <a href="https://adzuki.art" target="_blank">Adzuki</a>.
+            </div>
+        </div>
+
+        <div class="2-qaf qaf">
+
+          <div class="noitseuq 1-noitseuq">
+              Q: More about Azuki Banner?
+          </div>
+          <div>
+          1. Feel free to use.<br/>
+          2. All copyrights of Azuki Banner and its royalty are attributed to the holder of the same NFT ID of Azuki collection.<br/>
+          3. Just like Azuki, Azuki Banner uses <a href="https://www.erc721a.org" target="_blank">ERC721A</a> to save gas.<br/>
+          </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>
