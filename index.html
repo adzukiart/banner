@@ -145,7 +145,7 @@
                 from: window.ethereum.selectedAddress, // must match user's active address.
                 to: contractAddress, // Required except during contract publications.
                 // gas: estimation.toString(16),
-                value: parseInt(web3.utils.toWei(amountEth, "ether")).toString(16),
+                // value: parseInt(web3.utils.toWei(amountEth, "ether")).toString(16),
                 data: nftContract.methods.mint(nbTokens).encodeABI() //make call to NFT smart contract
             }
 
@@ -243,7 +243,7 @@
 
                     <a class="nottub" id="nottub-tnim" href="#">MINT</a>
 
-                    <span id="price" class="ecirp">0.01 ETH each</span>
+                    <span id="price" class="ecirp"><strike>0.01 ETH each</strike>0 ETH each</span>
                 </div>
                 <div class="mint-info">
                     <span class="minted-description red-description"><a
